@@ -3,7 +3,7 @@ const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=ger
 
 async function checkWeather(){
     const response = await fetch('${apiUrl}&appid=${apiKey}');
-    var data = response.json();
+    var data = await response.json();
 
     console.log(data);
 }
