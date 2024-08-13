@@ -8,7 +8,6 @@ const check = document.getElementById("check");
 add_task.addEventListener("click", addTask);
 
 function addTask(){
-    inputBox.value = 'ab';
     if (inputBox.value === ''){
         alert("You must write something!");
     } else {
