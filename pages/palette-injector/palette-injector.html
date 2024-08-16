@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jeshuran Jebanesan">
+    <meta name="description" content="palette injector">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Palette Injector</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Palette Injector</h1>
+        <div>
+            <label for="imageInput">Input an Image:</label>
+            <input type="file" id="imageInput" accept=".png, .jpg, .jpeg">
+        </div>
+        <div>
+            <label for="colorCount">Enter the Number of Colors in the Palette From 2 - 8: </label>
+            <input type="number" id="colorCount" min="2" max="8" value="4">
+        </div>
+        <div>
+            <p>Choose Between an Analagous or Complementary Color Scheme</p>
+            <label>
+                <input type="radio" name="choice" value="monochromatic">
+                Analagous
+            </label><br>
+            <label>
+                <input type="radio" name="choice" value="complementary">
+                Complementary
+            </label><br>
+        </div>
+        <button id="submit">Submit</button>
+    </div>
+</body>
+</html>
