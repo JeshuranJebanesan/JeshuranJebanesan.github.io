@@ -2,12 +2,12 @@ document.getElementById("colorForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const colorScheme = document.querySelector('input[name="colorScheme"]:checked');
     const colorCount = document.getElementById("colorCount");
-    /*const paletteColor = document.getElementById("paletteColor");
+    const paletteColor = document.getElementById("paletteColor");
     const paletteHex = document.getElementById("paletteHex");
     paletteColor.style.backgroundColor = "";
-    paletteHex.innerText = "";*/
-    const result = generatePalette(colorScheme.value, colorCount.value);
-    //handleResult(result);
+    paletteHex.innerText = "";
+    const palette = generatePalette(colorScheme.value, colorCount.value);
+    handleResult(palette);
 });
 
 function generatePalette(COLOR_SCHEME, COLOR_COUNT) {
@@ -23,12 +23,12 @@ function generatePalette(COLOR_SCHEME, COLOR_COUNT) {
     let chromaFixed = Lerp(0.01, 0.125, fixed);
 
     let lightnessBase = Lerp(0.3, 0.6, Math.random());
-    let lightnessStep = Lerp(0.3, 1 - lightnessBase, Math.random);
+    let lightnessStep = Lerp(0.3, 1 - lightnessBase, Math.random());
     let lightnessFixed = Lerp(0.6, 0.9, fixed);
 
     let chromaConstant = true;
+    let lightnessConstant = false;
     if(COLOR_SCHEME == "monochromatic") chromaConstant = false;
-    let lightnessConstant = !chromaConstant;
 
     for(let i = 0; i < COLOR_COUNT; i++) {
         let pos = i / (COLOR_COUNT - 1);
@@ -82,3 +82,29 @@ function oklab_to_linear_srgb(L, a, b) {
       (-0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s),
     ];
 }
+
+function handleResult(result) {
+    const palette = document.getElementById("palette");
+    palette.innerHTML = "";
+    const paletteColorsElement = document.createElement("div");
+    paletteColorsElement.style.display = "flex";
+    paletteColorsElement.style.flexWrap = "wrap";
+    paletteColorsElement.style.marginBottom = ".25em";
+    palette.appendChild(paletteColorsElement);
+    for (const color of result) {
+        const hex = getHexFromRGB(color);
+        const paletteColorElement = document.createElement("div");
+        paletteColorElement.addEventListener("click", () => {
+            const paletteColor = document.getElementById("paletteColor");
+            const paletteHex = document.getElementById("paletteHex");
+            paletteColor.style.backgroundColor = hex;
+            paletteHex.innerText = `Hex: ${hex}`;
+        })
+        paletteColorElement.style.backgroundColor = hex;
+        paletteColorElement.style.width = "2em";
+        paletteColorElement.style.height = "2em";
+        paletteColorsElement.appendChild(paletteColorElement);
+    }
+}
+
+const getHexFromRGB = (rgb) => `#${Number(rgb[0]).toString(16).padStart(2, "0")}${Number(rgb[1]).toString(16).padStart(2, "0")}${Number(rgb[2]).toString(16).padStart(2, "0")}`;
