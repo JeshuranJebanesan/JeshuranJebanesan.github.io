@@ -4,3 +4,26 @@
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
+
+:root{
+    --c1: #524a97;
+    --c2: #5d569e;
+    --c3:#6861a4;
+    --c4: #7e78b1;
+    --c5: #a9a5cb;
+    --c6: #d4d2e5;
+    --c7: #eae9f2;
+    --c8: #f5f4f9;
+}
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: var(--c1);
+    color: var(--c8);
+    padding: 10px;
+}
+
+.formItems{
+    margin: 1em
+}
