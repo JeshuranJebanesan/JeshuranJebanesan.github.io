@@ -108,3 +108,10 @@ function handleResult(result) {
 }
 
 const getHexFromRGB = (rgb) => `#${Number(rgb[0]).toString(16).padStart(2, "0")}${Number(rgb[1]).toString(16).padStart(2, "0")}${Number(rgb[2]).toString(16).padStart(2, "0")}`;
+
+const upload = document.getElementById("upload");
+const image = document.getElementById("image");
+
+upload.onchange = function() {
+    image.src = URL.createObjectURL(upload.files[0]);
+}
